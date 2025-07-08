@@ -18,7 +18,10 @@ public class TodoController {
     }
     @GetMapping
     public String list(HttpSession httpSession) {
-        System.out.println(getCurrentUser(httpSession));
+        User user = getCurrentUser(httpSession);
+        if(user == null) {
+            return "redirect:/login";
+        }
         return "todo-list";
     }
 }
