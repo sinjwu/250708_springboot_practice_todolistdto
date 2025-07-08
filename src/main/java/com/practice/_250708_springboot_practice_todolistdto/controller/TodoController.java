@@ -31,7 +31,7 @@ public class TodoController {
         }
         return "todo-list";
     }
-    @GetMapping
+    @GetMapping("/add")
     public String addForm(HttpSession httpSession, Model model) {
         if (getCurrentUser(httpSession) == null) return "redirect:/login";
         model.addAttribute("todoDto", new TodoDto());
