@@ -86,6 +86,15 @@ public class TodoController {
         todoRepository.update(todo);
         return "redirect:/todos";
     }
+    @GetMapping("/delete/{id}")
+    public String deleteGet(
+            @PathVariable int id,
+            HttpSession httpSession
+    ) {
+        User user = getCurrentUser(httpSession);
+        todoRepository.deleteByIdAndUserId(id, user.getId());
+        return "redirect:/todos";
+    }
     @PostMapping("/delete/{id}")
     public String delete(
             @PathVariable int id,
